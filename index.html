@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>CFFM Youth Conference | Occupying Territories</title>
+    <!-- Google Fonts + Font Awesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+    <h2>CFFM</h2>
+    <div>
+        <a href="#about">About</a>
+        <a href="#speakers">Speakers</a>
+        <a href="#register-section" class="cta">Register</a>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-content">
+        <div class="hero-badge">2026 · GLOBAL YOUTH GATHERING</div>
+        <h1>Occupying <span>Territories</span></h1>
+        <p><i class="fas fa-calendar-alt"></i> June 19 & 20, 2026 · 9:00AM EST</p>
+        <div class="hero-buttons">
+            <button class="btn-primary" onclick="scrollToSection()">Secure Your Spot <i class="fas fa-arrow-right"></i></button>
+            <button class="btn-outline" onclick="playTrailer()">Watch Trailer <i class="fas fa-play"></i></button>
+        </div>
+    </div>
+    <div class="hero-scroll-indicator">
+        <span>Scroll</span>
+        <i class="fas fa-chevron-down"></i>
+    </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features">
+    <div class="feature">
+        <div class="circle blue">
+            <i class="fas fa-music"></i>
+        </div>
+        <h3>Worship</h3>
+        <p>Encounter God through powerful praise and worship experiences.</p>
+    </div>
+    <div class="feature">
+        <div class="circle purple">
+            <i class="fas fa-bible"></i>
+        </div>
+        <h3>Word</h3>
+        <p>Be Equipped with life-changing teachings from anointed leaders.</p>
+    </div>
+    <div class="feature">
+        <div class="circle gold">
+            <i class="fas fa-bullseye"></i>
+        </div>
+        <h3>Purpose</h3>
+        <p>Discover Calling and unlock your God-given destiny.</p>
+    </div>
+    <div class="feature">
+        <div class="circle blue">
+            <i class="fas fa-globe-americas"></i>
+        </div>
+        <h3>Mission</h3>
+        <p>Impact Nations and take your faith beyond boundaries.</p>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+    <div class="about-container">
+        <div class="about-text">
+            <h2>About The Conference</h2>
+            <div class="about-line"></div>
+            <p>A 2-day gathering of youth, driven by faith and united for a purpose. Rise and occupy the territories you are called to — in your campus, career, family, and nations.</p>
+            <div class="about-stats">
+                <div><strong>2000+</strong><span>Attendees</span></div>
+                <div><strong>15+</strong><span>Nations</span></div>
+                <div><strong>30+</strong><span>Workshops</span></div>
+            </div>
+            <button id="registerBtn" class="btn-gold">Register Now <i class="fas fa-ticket-alt"></i></button>
+        </div>
+        <div class="about-image">
+            <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=500&auto=format" alt="Youth worship" loading="lazy">
+            <div class="image-overlay"></div>
+        </div>
+    </div>
+</section>
+
+<!-- SPEAKERS -->
+<section class="speakers" id="speakers">
+    <div class="section-header">
+        <h2>Featured Speakers</h2>
+        <p>Anointed voices ready to ignite your purpose</p>
+    </div>
+    <div class="grid">
+        <div class="card">
+            <div class="card-img">
+                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Pastor David">
+            </div>
+            <h3>Pastor David</h3>
+            <p class="title">Lead Pastor · CFFM</p>
+            <div class="social-icons">
+                <i class="fab fa-instagram"></i>
+                <i class="fab fa-twitter"></i>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-img">
+                <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Min Grace">
+            </div>
+            <h3>Minister Grace</h3>
+            <p class="title">Worship Leader & Speaker</p>
+            <div class="social-icons">
+                <i class="fab fa-instagram"></i>
+                <i class="fab fa-twitter"></i>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-img">
+                <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Bro Michael">
+            </div>
+            <h3>Brother Michael</h3>
+            <p class="title">Youth Apologist</p>
+            <div class="social-icons">
+                <i class="fab fa-instagram"></i>
+                <i class="fab fa-twitter"></i>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-img">
+                <img src="https://randomuser.me/api/portraits/women/90.jpg" alt="Sis Faith">
+            </div>
+            <h3>Sister Faith</h3>
+            <p class="title">Missionary & Author</p>
+            <div class="social-icons">
+                <i class="fab fa-instagram"></i>
+                <i class="fab fa-twitter"></i>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA SECTION with countdown -->
+<section class="cta-section" id="register-section">
+    <h2>Don't Miss This Moment</h2>
+    <p>Join thousands of radical believers — transform your world</p>
+    <div class="timer-container">
+        <div class="timer" id="countdown"></div>
+    </div>
+    <button id="ctaRegister" class="btn-large-gold">Register Now <i class="fas fa-arrow-circle-right"></i></button>
+    <div class="venue-info">
+        <i class="fas fa-map-marker-alt"></i> CFFM Global Dome & Online Worldwide
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-content">
+        <div>
+            <h3>CFFM Youth</h3>
+            <p>Occupying Territories for the Kingdom</p>
+        </div>
+        <div class="footer-links">
+            <a href="#">Privacy</a>
+            <a href="#">Contact</a>
+            <a href="#">Volunteer</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2026 Christian Faith Fellowship Ministries — All rights reserved.</p>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
