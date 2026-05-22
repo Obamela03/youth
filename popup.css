@@ -1,0 +1,81 @@
+/* VIDEO MODAL */
+.video-modal {
+    position: fixed;
+    z-index: 9999;
+    inset: 0;
+
+    background: rgba(0,0,0,0.92);
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+
+    backdrop-filter: blur(8px);
+}
+
+/* VIDEO CONTAINER - 80% of screen width */
+.video-content {
+    position: relative;
+    width: 80%;
+    max-width: 80%;
+    
+    animation: modalFade 0.3s ease;
+}
+
+/* VIDEO - maintains aspect ratio and fits container */
+.video-content video {
+    width: 100%;
+    height: auto;
+    max-height: 80vh;
+    border-radius: 20px;
+
+    box-shadow:
+    0 0 40px rgba(245,197,24,0.15),
+    0 0 80px rgba(58,12,163,0.2);
+}
+
+/* CLOSE BUTTON */
+.close-video {
+    position: absolute;
+    top: -55px;
+    right: 0;
+
+    color: white;
+    font-size: 50px;
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.close-video:hover {
+    color: var(--gold);
+    transform: rotate(90deg);
+}
+
+/* MODAL ANIMATION */
+@keyframes modalFade {
+
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* MOBILE RESPONSIVE */
+@media (max-width: 768px) {
+    .video-content {
+        width: 95%;
+    }
+    
+    .close-video {
+        top: -45px;
+        font-size: 40px;
+    }
+}
