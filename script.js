@@ -241,3 +241,75 @@ images.forEach(img => {
 closeBtn.addEventListener("click", () => {
     lightbox.style.display = "none";
 });
+
+
+// CAROUSEL GALLERY
+
+const mainImage = document.getElementById("mainImage");
+const thumbnails = document.querySelectorAll(".thumb");
+const prevBtn = document.querySelector(".prev");
+const nextBtn = document.querySelector(".next");
+
+let currentIndex = 0;
+
+// Convert thumbnails into array of image sources
+const imageSources = Array.from(thumbnails).map(img => img.src);
+
+// UPDATE MAIN IMAGE
+function updateGallery(index) {
+
+    mainImage.src = imageSources[index];
+
+    thumbnails.forEach(thumb => {
+        thumb.classList.remove("active");
+    });
+
+    thumbnails[index].classList.add("active");
+}
+
+// THUMB CLICK
+thumbnails.forEach((thumb, index) => {
+
+    thumb.addEventListener("click", () => {
+        currentIndex = index;
+        updateGallery(currentIndex);
+    });
+
+});
+
+// NEXT BUTTON
+nextBtn.addEventListener("click", () => {
+
+    currentIndex++;
+
+    if(currentIndex >= imageSources.length){
+        currentIndex = 0;
+    }
+
+    updateGallery(currentIndex);
+});
+
+// PREVIOUS BUTTON
+prevBtn.addEventListener("click", () => {
+
+    currentIndex--;
+
+    if(currentIndex < 0){
+        currentIndex = imageSources.length - 1;
+    }
+
+    updateGallery(currentIndex);
+});
+
+// AUTO SLIDE
+setInterval(() => {
+
+    currentIndex++;
+
+    if(currentIndex >= imageSources.length){
+        currentIndex = 0;
+    }
+
+    updateGallery(currentIndex);
+
+}, 5000);
