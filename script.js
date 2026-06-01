@@ -1,4 +1,3 @@
-
 // Smooth scroll to about section (hero button)
 function scrollToSection() {
     document.getElementById("about").scrollIntoView({
@@ -7,9 +6,35 @@ function scrollToSection() {
     });
 }
 
-// Play trailer alert (demo function)
+// Play trailer function (opens modal with sound)
+// Alternative: Play muted first, let user unmute manually
 function playTrailer() {
-    alert("🔥 Watch the official conference trailer: Coming soon! Stay tuned for a powerful preview.");
+    const modal = document.getElementById("videoModal");
+    const video = document.getElementById("trailerVideo");
+    
+    if (modal && video) {
+        modal.style.display = "flex";
+        video.currentTime = 0;
+        video.muted = true; // Start muted to ensure autoplay works
+        video.play().then(() => {
+            // User can click the speaker icon on the video to unmute
+            console.log("Video playing muted - click speaker icon for sound");
+        }).catch(e => console.log("Play error:", e));
+    }
+}
+
+// Close trailer function
+function closeTrailer() {
+    const modal = document.getElementById("videoModal");
+    const video = document.getElementById("trailerVideo");
+    
+    if (modal) {
+        modal.style.display = "none";
+    }
+    if (video) {
+        video.pause();
+        video.currentTime = 0;
+    }
 }
 
 // RSVP BUTTONS: open google form placeholder
@@ -95,7 +120,7 @@ const backgroundImages = [
     "images/bg1.jpg",
     "images/bg2.jpg",
     "images/bg3.jpg",
-    "images/bg3.jpg"
+    "images/bg4.jpg"
     // Add as many as you want — they will cycle randomly
 ];
 
@@ -110,16 +135,16 @@ function shuffleArray(arr) {
 
 // Create random order of images but ensure no repeats before cycling
 let shuffledImages = [...backgroundImages];
-let currentIndex = 0;
+let bgCurrentIndex = 0;
 
 function getNextImage() {
-    if (currentIndex >= shuffledImages.length) {
+    if (bgCurrentIndex >= shuffledImages.length) {
         // Reshuffle when we've shown all images
         shuffledImages = shuffleArray([...backgroundImages]);
-        currentIndex = 0;
+        bgCurrentIndex = 0;
     }
-    const image = shuffledImages[currentIndex];
-    currentIndex++;
+    const image = shuffledImages[bgCurrentIndex];
+    bgCurrentIndex++;
     return image;
 }
 
@@ -175,7 +200,7 @@ if (slideshowContainer) {
     // Prepare next image in queue
     let imageQueue = [...nextImages.slice(1)];
     
-    // Cycle slides every 8 seconds
+    // Cycle slides every 5 seconds
     setInterval(() => {
         // Get next image from queue or generate new
         let nextImage;
@@ -211,7 +236,7 @@ if (slideshowContainer) {
             });
         }
         
-    }, 5000); // Change image every 8 seconds
+    }, 5000); // Change image every 5 seconds
 }
 
 // Function to preload images for smoother transitions
@@ -227,18 +252,95 @@ preloadImages(backgroundImages);
 
 
 // LIGHTBOX FUNCTIONALITY
-const images = document.querySelectorAll(".gallery img");
+const galleryImages = document.querySelectorAll(".thumb");
 const lightbox = document.getElementById("lightbox");
 const lightboxImg = document.getElementById("lightbox-img");
 const closeBtn = document.getElementById("close");
 
-images.forEach(img => {
-    img.addEventListener("click", () => {
-        lightbox.style.display = "flex";
-        lightboxImg.src = img.src;
+if (galleryImages.length && lightbox && lightboxImg && closeBtn) {
+    galleryImages.forEach(img => {
+        img.addEventListener("click", () => {
+            lightbox.style.display = "flex";
+            lightboxImg.src = img.src;
+        });
     });
-});
 
-closeBtn.addEventListener("click", () => {
-    lightbox.style.display = "none";
-});
+    closeBtn.addEventListener("click", () => {
+        lightbox.style.display = "none";
+    });
+}
+
+// CAROUSEL GALLERY
+
+const mainImage = document.getElementById("mainImage");
+const thumbnails = document.querySelectorAll(".thumb");
+const prevBtn = document.querySelector(".prev");
+const nextBtn = document.querySelector(".next");
+
+let carouselIndex = 0;
+
+// Convert thumbnails into array of image sources (filter out broken images if needed)
+const imageSources = Array.from(thumbnails).map(img => img.src);
+
+// UPDATE MAIN IMAGE
+function updateGallery(index) {
+    if (!mainImage || !thumbnails.length) return;
+    
+    mainImage.src = imageSources[index];
+
+    thumbnails.forEach(thumb => {
+        thumb.classList.remove("active");
+    });
+
+    if (thumbnails[index]) {
+        thumbnails[index].classList.add("active");
+    }
+}
+
+// THUMB CLICK
+if (thumbnails.length) {
+    thumbnails.forEach((thumb, index) => {
+        thumb.addEventListener("click", () => {
+            carouselIndex = index;
+            updateGallery(carouselIndex);
+        });
+    });
+}
+
+// NEXT BUTTON
+if (nextBtn) {
+    nextBtn.addEventListener("click", () => {
+        carouselIndex++;
+
+        if (carouselIndex >= imageSources.length) {
+            carouselIndex = 0;
+        }
+
+        updateGallery(carouselIndex);
+    });
+}
+
+// PREVIOUS BUTTON
+if (prevBtn) {
+    prevBtn.addEventListener("click", () => {
+        carouselIndex--;
+
+        if (carouselIndex < 0) {
+            carouselIndex = imageSources.length - 1;
+        }
+
+        updateGallery(carouselIndex);
+    });
+}
+
+// AUTO SLIDE
+setInterval(() => {
+    carouselIndex++;
+
+    if (carouselIndex >= imageSources.length) {
+        carouselIndex = 0;
+    }
+
+    updateGallery(carouselIndex);
+
+}, 5000);
